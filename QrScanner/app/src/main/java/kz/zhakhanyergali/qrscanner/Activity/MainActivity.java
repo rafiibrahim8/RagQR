@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
         seller_name = findViewById(R.id.ma_seller_name);
 
         appItemORM = new AppItemORM();
-        seller_name.setText(appItemORM.get(this, "seller_name"));
+        seller_name.setText("Hello, " + appItemORM.get(this, "seller_name"));
 
         ActivityCompat.requestPermissions(MainActivity.this,
                 new String[]{Manifest.permission.CAMERA},

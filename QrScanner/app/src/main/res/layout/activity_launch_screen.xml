@@ -19,7 +19,7 @@
         android:src="@drawable/logo" />
 
     <kz.zhakhanyergali.qrscanner.CustomWidgets.CustomTextView
-        android:text="&#169; Yergali Zhakhan"
+        android:text="&#169; Satyam"
         android:textColor="@color/orange"
         android:textStyle="normal"
         android:textSize="15sp"

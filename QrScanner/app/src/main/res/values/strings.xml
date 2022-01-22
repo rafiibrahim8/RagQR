@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">QrScanner</string>
+    <string name="app_name">Satyam T-shirt Seller</string>
     <string name="qr_hint">Hover to QR-code</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
