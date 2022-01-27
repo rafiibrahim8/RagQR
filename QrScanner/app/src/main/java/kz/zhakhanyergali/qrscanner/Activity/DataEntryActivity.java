@@ -29,6 +29,7 @@ public class DataEntryActivity extends AppCompatActivity {
 
     TextView sellType;
     TextView qrid;
+    TextView extra_text;
     EditText name;
     EditText mobile;
     EditText amount;
@@ -54,10 +55,18 @@ public class DataEntryActivity extends AppCompatActivity {
         amount = findViewById(R.id.de_amount);
         submit = findViewById(R.id.de_submit);
         cancel = findViewById(R.id.de_cancel);
+        extra_text = findViewById(R.id.de_extra_text);
 
         boolean is_editing = getIntent().getBooleanExtra("customer_is_edit", false);
+        boolean editable = getIntent().getBooleanExtra("editable", true);
+        String extra_text_str = getIntent().getStringExtra("extra_text");
         if(is_editing){
-            sellType.setText("Edit Sell");
+            if(editable){
+                sellType.setText("Edit Sell");
+            }
+            else {
+                sellType.setText("Viewing Sell");
+            }
             sellType.setBackgroundColor(getResources().getColor(R.color.sell_update_bg));
             sellType.setTextColor(getResources().getColor(R.color.sell_update_font));
         }
@@ -65,6 +74,22 @@ public class DataEntryActivity extends AppCompatActivity {
             sellType.setText("New Sell");
             sellType.setBackgroundColor(getResources().getColor(R.color.sell_new_bg));
             sellType.setTextColor(getResources().getColor(R.color.sell_new_font));
+        }
+        if(editable){
+            cancel.setText("Cancel");
+            submit.setVisibility(View.VISIBLE);
+
+        }
+        else{
+            cancel.setText("Back");
+            submit.setVisibility(View.GONE);
+        }
+        if(extra_text_str.length() > 0){
+            extra_text.setText(extra_text_str);
+            extra_text.setVisibility(View.VISIBLE);
+        }
+        else{
+            extra_text.setVisibility(View.GONE);
         }
 
         qrid.setText(getIntent().getStringExtra("qrid"));

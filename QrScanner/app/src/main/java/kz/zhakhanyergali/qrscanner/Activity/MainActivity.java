@@ -120,6 +120,8 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
                             String qrid = response.getString("qrid");
                             String qr_text = response.getString("qr_text");
                             Boolean customer_is_edit = response.getBoolean("customer_is_edit");
+                            Boolean editable = response.getBoolean("editable");
+                            String extra_text =  response.getString("extra_text");
 
                             Intent intent = new Intent(MainActivity.this, DataEntryActivity.class);
                             intent.putExtra("customer_name", customer_name);
@@ -128,6 +130,8 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
                             intent.putExtra("qrid", qrid);
                             intent.putExtra("customer_is_edit", customer_is_edit);
                             intent.putExtra("qr_text", qr_text);
+                            intent.putExtra("extra_text", extra_text);
+                            intent.putExtra("editable", editable);
                             startActivity(intent);
                         } catch (JSONException e) {
                             System.exit(0);
@@ -139,6 +143,10 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
                 progressDialog.dismiss();
                 if(volleyError.networkResponse == null){
                     Toast.makeText(MainActivity.this, "Network connection error.", Toast.LENGTH_SHORT).show();
+                    mScannerView.resumeCameraPreview(MainActivity.this);
+                }
+                else if(volleyError.networkResponse.statusCode == 401){
+                    Toast.makeText(MainActivity.this, "This t-shirt was not sold.", Toast.LENGTH_SHORT).show();
                     mScannerView.resumeCameraPreview(MainActivity.this);
                 }
                 else{
